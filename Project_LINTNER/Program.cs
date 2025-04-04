@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace Project_LINTNER
 {
     public class Program
@@ -8,6 +10,8 @@ namespace Project_LINTNER
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite("Data Source=products.db"));
+
 
             var app = builder.Build();
 

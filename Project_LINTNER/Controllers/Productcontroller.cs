@@ -5,15 +5,63 @@ namespace Project_LINTNER.Controllers
 {
     public class Productcontroller : Controller
     {
+        private readonly ApplicationDbContext _context;
+        public Productcontroller(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+
+
+
 
         public IActionResult Index()
         {
-            List<Product> products = new List<Product>();
-            products.Add(new Product { Id = 1, Name = "Laptop", price = 1000 });
-            products.Add(new Product { Id = 2, Name = "Iphone", price = 1400 });
-            products.Add(new Product { Id = 3, Name = "PC (not working)", price = 2000 });
-            products.Add(new Product { Id = 4, Name = "Raspberry", price = 90 });
+            List<Product> products = _context.Products.ToList();
             return View(products);
+        }
+
+        public IActionResult Edit(int id)
+        {
+            Product product = _context.Products.Find(id);
+            if (product == null) return NotFound();
+            return View(product);
+
+        }
+        [HttpPost]
+        public IActionResult Edit(Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Products.Update(product);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(product);
+
+        }
+
+
+
+
+
+
+        public IActionResult Create()
+        {
+            return View();
+
+        }
+        [HttpPost]
+        public IActionResult Create(Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Products.Add(product);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(product);
+
         }
     }
 }

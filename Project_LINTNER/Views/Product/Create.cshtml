@@ -1,0 +1,23 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Create Product";
+}
+@model Product
+<h1>Produkt erstellen</h1>
+<form asp-action="Create">
+    <div class= "mb-3">
+            <label class="form-label" asp-for="Name"></label>
+            <input class="form-control" asp-for="Name" type="text"/>
+            <span asp-validation-for="Name"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="price"></label>
+        <input class="form-control" asp-for="price" type="number" />
+        <span asp-validation-for="price"></span>
+    </div>
+    <div class="mb-3">
+        <input class="btn btn-primary" type="submit" value="Erstellen"/>
+    </div>
+</form>
