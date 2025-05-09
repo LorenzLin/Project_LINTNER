@@ -4,6 +4,19 @@
 @{
     ViewData["Title"] = "Create Product";
 }
+
+
+
+
+
+
+
+
+
+@{
+
+
+
 @model Product
 <h1>Produkt erstellen</h1>
 <form asp-action="Create">
@@ -20,4 +33,24 @@
     <div class="mb-3">
         <input class="btn btn-primary" type="submit" value="Erstellen"/>
     </div>
+
+
+        
+
+        <h2>Upload an Image</h2>
+
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="ImageFile" accept="image/*" />
+            <button type="submit">Upload</button>
+        </form>
+
+
+
+
+
+
+
+
 </form>
+
+}
